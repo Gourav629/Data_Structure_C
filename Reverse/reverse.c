@@ -1,22 +1,41 @@
 #include<stdio.h>
-#define n 10
+#define k 6         //Macros
+
 void print_array(int *array, int length)
 {
-    for (int i = 0; i < length; i++)printf("%d,", array[i]);
+    for (int i = 0; i < length; i++)printf(" %d,", array[i]);
+}
+
+int *getarray(int *a)  
+{  
+    printf("Enter the elements in an array : \n");  
+    for(int i=0;i<k;i++)  
+    {  
+        scanf("%d", &a[i]);  
+    }  
+    return a;  
+}
+
+int *reverse_array(int *z){
+    int temp;
+    for (int i = 0; i < k/2; i++)
+    {
+        temp = z[i];
+        z[i] = z[k-i-1];
+        z[k-i-1] = temp;
+    }
+
+    return z;
 }
 
 int main(){
-    int arr[n] = {1,9,8,2,7,3,4,6,5,10};
-    int temp;
+    int *na, *ka;  
+    int a[k];  
+    na = getarray(a);
     printf("Array Before Reverse\n");
-    print_array(arr,n);
-    for (int i = 0; i < n/2; i++)
-    {
-        temp = arr[i];
-        arr[i] = arr[n-i-1];
-        arr[n-i-1] = temp;
-    }
+    print_array(na,k);          // Array Printing Function
+    ka = reverse_array(na) ;    // Array Creation Function
     printf("\n Array After Reversing\n");
-    print_array(arr,n);
+    print_array(ka,k);          // Array Printing Function
     return 0;
 }
